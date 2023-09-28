@@ -2,22 +2,19 @@
 """
 Pascal Trangle
 """
+
 def pascal_triangle(n):
-    '''
-    Creates a list of lists of integers in a Pascal's triangle
-    of a given integer.
-    '''
+    """Returns a list of integers representing the pascal's triangle"""
     if n <= 0:
         return []
-    else:
-        res = []
-        for i in range(n):
-            if len(res) == 0:
-                res.append([1])
-            else:
-                row = [1]
-                for j in range(1, len(res[-1])):
-                    row.append(res[-1][j] + res[-1][j - 1])
-                row.append(1)
-                res.append(row)
-        return res
+    a = [[] for i in range(n)]
+    for i in range(n):
+        for j in range(i + 1):
+            if j < i:
+                if j == 0:
+                    a[i].append(1)
+                else:
+                    a[i].append(a[i - 1][j] + a[i - 1][j - 1])
+            elif j == i:
+                a[i].append(1)
+    return a
